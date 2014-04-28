@@ -1,6 +1,8 @@
 // A very simple example skecth that allows the  onbaord LED to be reomotely 
 // controlled by a webpage. See http://wp.josh.com/platform-for-casual-encounters for more info.
 
+// Be sure to run BlinkMeSetup on your Arduino Yun first before downloading this sketch.
+
 // This is the default baud rate for the serial link to the Linino
 // that will send us the HTTP request parameters
 #define LININOBAUD 250000  
