@@ -1,4 +1,4 @@
-This project lets epople blink the on-board LED.
+This project lets people blink the on-board LED.
 
 First upload BlinkMeSetup into the Arduino to initialize things.
 
