@@ -1,10 +1,12 @@
 // This will convert a linux shell script into a C snippet that you can
 // paste into an Arduino sketch and download to a Yun.
 
-def name =  /D:\Users\josh\DropBox\Arduino\BlinkMeSetup.sh.txt/
+def name =  /D:\Users\josh\Documents\GitHub\PlatformForCasualEncounters\BlinkMe\misc\BlinkMeSetup.sh/
 
 
 def sourceShell = new File(name )  
+
+
 
 sourceShell.eachLine {
 
@@ -19,5 +21,9 @@ sourceShell.eachLine {
         println( "//" +it.replace('#', "" ) )
         
     }
-    else println("  \""+it+"\"," )
+    
+    else {
+        println("   run( F(\""+it+"\"));" )
+    }        
 }
+

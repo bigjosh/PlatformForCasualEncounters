@@ -57,7 +57,7 @@ uci set firewall.@redirect[-1].target=DNAT
 
 # ---------------------- setupSSID
   
-uci set wireless.@wifi-iface[0].ssid="$SSID"
+uci set wireless.@wifi-iface[0].ssid=$SSID
   
 # ---------------------- createRedirectConfig
 
