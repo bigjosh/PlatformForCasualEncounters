@@ -107,7 +107,7 @@ chmod +x /www/cgi-bin/redirect.cgi
 uci set uhttpd.redirect='uhttpd'
 uci set uhttpd.redirect.listen_http='0.0.0.0:8080'
 uci set uhttpd.redirect.cgi_prefix='/cgi-bin'
-uci set uhttpd.redirect.config='/etc/httpd_redirect.config'
+uci set uhttpd.redirect.config='/etc/httpd_redirect.conf'
 uci set uhttpd.redirect.home='/www'
 
 

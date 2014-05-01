@@ -11,7 +11,7 @@ def sourceShell = new File(name )
 def EOMMode = false
 
 
-println( "// What follows is code automatically generated form the shell script "+ sourceShell.getName() )
+println( "// What follows is code automatically generated from the shell script "+ sourceShell.getName() )
 println( "// ==========================================================================================================" )
 
 println()
