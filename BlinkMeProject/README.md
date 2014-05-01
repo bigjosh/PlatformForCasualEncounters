@@ -6,4 +6,4 @@ Then upload BlinkMe to actually let people control the LED.
 
 More info at...
 
-http://wp.josh.com/2014/04/28/a-platform-for…ual-encounters/
+http://wp.josh.com/2014/04/01/a-platform-for-casual-encounters/
