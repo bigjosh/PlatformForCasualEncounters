@@ -1,13 +1,17 @@
 /*
 
- This sketch will run a bunch of linux commands on an Arduino Yun.
+ This sketch will run a bunch of linux commands on an Arduino Yun to set it up
+ to be a captive portal as described in:
+ http://wp.josh.com/platform-for-casual-encounters
  
- This specific version runs commands to get it ready to be a captive portal
- as described in http:
+ After uploading this sketch, wait for the red LED on the board to start blinking at a steady 
+ 1 blink per second to know that the setup is complete. Then upload the BlinkMe sketch.
  
- Based on example code from 
-
+ The sending of shell commands based on example code from:
  http://arduino.cc/en/Tutorial/ShellCommands
+ 
+ The use of the F() macro to keep strings in flash described here:
+ http://stackoverflow.com/questions/16597437/arduino-f-what-does-it-actually-do
 
  */
  
@@ -35,13 +39,12 @@ void run( const __FlashStringHelper* commandString) {
 
 void setup() {
   
-  Bridge.begin();	// Initialize the Bridge
-  Serial.begin(9600);	// Initialize the Serial
-  
+  Serial.begin(9600);	// Initialize the Serial  
   delay(5000);          // Give people some time to connect via serial monitor...
   
-  Serial.println(F("Starting..."));
-   
+  Serial.println(F("Starting Bridge..."));
+  Bridge.begin();	// Initialize the Bridge
+     
 // What follows is code automatically generated from the shell script BlinkMeSetup.sh
 // ==========================================================================================================
 
@@ -225,11 +228,14 @@ void setup() {
 // ==========================================================================================================
 // End of code automatically generated from the shell script BlinkMeSetup.sh
 
+  Serial.println(F("Setup complete. Now upload the BlinkMe.ino sketch."));
+
 }
 
 
 void loop() {
   
+    
   // Signal all done with a 1Hz blinking LED
   
   digitalWrite( 13 , LOW );
