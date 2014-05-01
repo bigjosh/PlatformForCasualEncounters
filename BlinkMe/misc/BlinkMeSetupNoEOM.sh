@@ -40,7 +40,7 @@ uci set firewall.@redirect[-1].src=lan
 uci set firewall.@redirect[-1].proto=tcp
 uci set firewall.@redirect[-1].src_dip=!$(uci get network.lan.ipaddr)
 uci set firewall.@redirect[-1].src_dport=80 
-uci set firewall.@redirect[-1].dest_port=8080
+uci set firewall.@redirect[-1].dest_port=80
 uci set firewall.@redirect[-1].dest_ip=$(uci get network.lan.ipaddr)
 uci set firewall.@redirect[-1].target=DNAT
 
@@ -84,14 +84,13 @@ echo >/etc/httpd_redirect.conf 'A:/:/cgi-bin/redirect.cgi'
   # next time they try to pull this up when connected to a real network. Alas, it seems like
   # Firefox mobile was caching it, so we need the cache control headers. 
 
-cat >/www/cgi-bin/redirect.cgi <<EOM  
-#!/bin/sh
-echo Status: 302 found
-echo Location: http://$(uci get network.lan.ipaddr)
-echo Cache-Control: no-cache
-echo
-echo You are headed for http://$(uci get network.lan.ipaddr)
-EOM
+rm /www/cgi-bin/redirect.cgi
+echo >>/www/cgi-bin/redirect.cgi "#!/bin/sh"
+echo >>/www/cgi-bin/redirect.cgi "echo Status: 302 found"
+echo >>/www/cgi-bin/redirect.cgi "echo Location: http://$(uci get network.lan.ipaddr)"
+echo >>/www/cgi-bin/redirect.cgi "echo Cache-Control: no-cache"
+echo >>/www/cgi-bin/redirect.cgi "echo "
+echo >>/www/cgi-bin/redirect.cgi "echo You are headed for http://$(uci get network.lan.ipaddr)"
  
   # Make the new redirect CGI script executable... 
   
@@ -118,38 +117,33 @@ uci set uhttpd.redirect.home='/www'
   # We have to single quote the EOM becuase of the open and close brakets in the HTML
   # More info on how this works here http://www.tldp.org/LDP/abs/html/here-docs.html
 
-cat >/www/index.html <<'EOM'
-<!DOCTYPE html><title>Control Me</title><body><center>
-<script>
-  function send(s) {
-     r=new XMLHttpRequest();
-     r.open('GET','/cgi-bin/control.cgi?COMMAND='+s+'&'+(new Date()).getTime(),false);
-     r.send(null);
-  }
-</script>
-<H1>LED GOES</H1>
-<button style='width: 200px;height: 100px;' onclick='send(1);'>On</button>
-<button style='width: 200px;height: 100px;' onclick='send(0);'>Off</button>
-</center></body>
-EOM
+rm /www/index.html
+echo >>/www/index.html "<!DOCTYPE html><title>Control Me</title><body><center>"
+echo >>/www/index.html "<script>"
+echo >>/www/index.html " function send(s) {"
+echo >>/www/index.html "    r=new XMLHttpRequest();"
+echo >>/www/index.html "    r.open('GET','/cgi-bin/control.cgi?COMMAND='+s+'&'+(new Date()).getTime(),false);"
+echo >>/www/index.html "    r.send(null);"
+echo >>/www/index.html " }"
+echo >>/www/index.html "</script>"
+echo >>/www/index.html "<H1>LED GOES</H1>"
+echo >>/www/index.html "<button style='width: 200px;height: 100px;' onclick='send(1);'>On</button>"
+echo >>/www/index.html "<button style='width: 200px;height: 100px;' onclick='send(0);'>Off</button>"
+echo >>/www/index.html "</center></body>"
 
 # ---------------------- setupControl CGI
   
   # Create the /cgi-bin/control.cgi that is called from the UI at index.html
   # and sends the commands to the Arduino via the tty link
   # Quote the here-document so QUERY_STRING doesn't get evaluated now
-  # This may look unsecure and a potential path for an attacker to inject shell
-  # commands using the query string, but I think it is OK becuase the variable
-  # will only get evaluated once and then sent to the Arduino
 
-cat >/www/cgi-bin/control.cgi <<'EOM'  
-#!/bin/sh
-echo $QUERY_STRING >/dev/ttyATH0
-echo Cache-Control: no-cache
-echo Content-type: text/plain
-echo 
-echo Command sent
-EOM
+rm /www/cgi-bin/control.cgi
+echo >>/www/cgi-bin/control.cgi "#!/bin/sh"
+echo >>/www/cgi-bin/control.cgi "echo $QUERY_STRING >/dev/ttyATH0"
+echo >>/www/cgi-bin/control.cgi "echo Cache-Control: no-cache"
+echo >>/www/cgi-bin/control.cgi "echo Content-type: text/plain"
+echo >>/www/cgi-bin/control.cgi "echo "
+echo >>/www/cgi-bin/control.cgi "echo Command sent"
 
 
   # Make the new control CGI script executable... 
@@ -162,7 +156,7 @@ chmod +x /www/cgi-bin/control.cgi
 uci commit
   
   # And reboot Linino just to be safe (sometimes seems like just doing a restarts leads to an unreachable state)...
-  # Must be delayed to give Bridge time to ACK the command back to the Arduino, otherwise the Arduino
+  # Must be delayed to give Brudge time to ACK the command back to the Arduino, otherwise the Arduino
   # will keep sending the reboot command over and over again and keep rebooting the Linino forever...
 
 reboot -d 1 &
