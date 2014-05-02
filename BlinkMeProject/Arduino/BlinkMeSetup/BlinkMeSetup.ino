@@ -182,9 +182,9 @@ void setup() {
    "     r.send(null);" NL
    "  }" NL
    "</script>" NL
-   "<H1>LED GOES</H1>" NL
-   "<button style='width: 200px;height: 100px;' onclick='send(1);'>On</button>" NL
-   "<button style='width: 200px;height: 100px;' onclick='send(0);'>Off</button>" NL
+   "<H1 style='font-size: 150px;'>LED GOES</H1>" NL
+   "<button style='font-size: 150px;' onclick='send(1);'>On</button>" NL
+   "<button style='font-size: 150px;' onclick='send(0);'>Off</button>" NL
    "</center></body>" NL
    //-----
     "EOM" NL));
@@ -227,7 +227,7 @@ void setup() {
 
 // ==========================================================================================================
 // End of code automatically generated from the shell script BlinkMeSetup.sh
-
+                   
   Serial.println(F("Setup complete. Now upload the BlinkMe.ino sketch."));
 
 }
