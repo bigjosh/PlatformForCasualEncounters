@@ -1,5 +1,5 @@
 // A very simple example skecth that allows the  onbaord LED to be reomotely 
-// controlled by a webpage. See http://wp.josh.com/2014/04/01/a-platform-for-casual-encounters/ for more info.
+// controlled by a webpage. See http://wp.josh.com/2014/05/01/a-platform-for-casual-encounters/ for more info.
 
 // This is the default baud rate for the serial link 
 #define LININOBAUD 250000  
