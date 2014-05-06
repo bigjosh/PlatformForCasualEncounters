@@ -119,7 +119,7 @@ uci set uhttpd.redirect.home='/www'
   # More info on how this works here http://www.tldp.org/LDP/abs/html/here-docs.html
 
 cat >/www/index.html <<'EOM'
-<!DOCTYPE html><title>Control Me</title><body><center>
+<!DOCTYPE html><title>Blink Me</title><body><center>
 <script>
   function send(s) {
      r=new XMLHttpRequest();
