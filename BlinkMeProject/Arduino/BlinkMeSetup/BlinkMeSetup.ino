@@ -2,7 +2,7 @@
 
  This sketch will run a bunch of linux commands on an Arduino Yun to set it up
  to be a captive portal as described in:
- http://wp.josh.com/2014/04/01/a-platform-for-casual-encounters/
+ http://wp.josh.com/2014/05/01/a-platform-for-casual-encounters/
  
  After uploading this sketch, wait for the red LED on the board to start blinking at a steady 
  1 blink per second to know that the setup is complete. Then upload the BlinkMe sketch.
