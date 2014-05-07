@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-<title>Beep Me</title>
+<title>Blink Me</title>
 <meta name='viewport' content='width=device-width'>
 </head>
 <body><center>
@@ -11,10 +11,7 @@
      r.send(null);
   }
 </script>
-TONE GOES<BR>
-<input type='range' min='50' max='5000' id='freq''><br>
- 
-<button onclick='send( "T"+("00000"+document.getElementById("freq").value).slice(-5));'>Play</button>
-<button onclick='send( "N" );'>Stop</button>
-         
+LED GOES<BR>
+<button onclick='send(1);'>On</button>
+<button onclick='send(0);'>Off</button>
 </center></body>
