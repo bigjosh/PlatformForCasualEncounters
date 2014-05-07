@@ -182,9 +182,10 @@ void setup() {
    "     r.send(null);" NL
    "  }" NL
    "</script>" NL
-   "<H1 style='font-size: 150px;'>LED GOES</H1>" NL
-   "<button style='font-size: 150px;' onclick='send(1);'>On</button>" NL
-   "<button style='font-size: 150px;' onclick='send(0);'>Off</button>" NL
+   "<H1 style='font-size: 150px;'>TONE GOES</H1>" NL
+   "Freqency:<br>" NL
+   "<input type='range' name='freq' min='10' max='20000'><br>" NL
+   "<button style='font-size: 150px;' onclick='send( 'T'+('00000'+document.getElementById('freq').value).slice(-5));'>Play</button>" NL
    "</center></body>" NL
    //-----
     "EOM" NL));

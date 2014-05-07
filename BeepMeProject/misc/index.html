@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<head>
+<title>Beep Me</title>
+<meta name="viewport" content="width=device-width">
+</head>
+<body><center>
+<script>
+  function send(s) {
+     r=new XMLHttpRequest();
+     r.open('GET','/cgi-bin/control.cgi?COMMAND='+s+'&'+(new Date()).getTime(),false);
+     r.send(null);
+  }
+</script>
+TONE GOES<BR>
+<input type='range' min='50' max='5000' id='freq''>
+<br>
+ 
+<button onclick='send( "T"+("00000"+document.getElementById("freq").value).slice(-5));'>Play</button>
+<button onclick='send( "N" );'>Stop</button>
+         
+</center></body>
