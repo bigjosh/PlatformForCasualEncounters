@@ -16,8 +16,35 @@ void setup() {
 // Mast match the command string sent by the HTML code
 #define COMMAND_PREFIX "COMMAND="
 
+
+// Understood command string formats:
+// '0' - Turn of LED
+// '1' - Turn on LED
+
 // This is the expected length of the incoming command. For now just turnong on/off so only need 1 bytes
 #define COMMAND_LEN 1
+
+void processCommand( const char *commandString ) {
+
+  // Use the first byte to specifiy action...
+  
+  switch (commandString[0]) {
+      
+    case '0': 
+     
+    pinMode( LED_PIN, OUTPUT );
+     digitalWrite( LED_PIN , LOW );      // Turn off the LED
+     break;
+     
+     
+    case '1':
+     digitalWrite( LED_PIN , HIGH );      // Turn on the LED
+     break;
+              
+  }
+         
+}
+
 
 char commandBuffer[COMMAND_LEN];
 
@@ -29,21 +56,7 @@ void loop() {
     // Read it into the command buffer and only process if long enough...
     if ( Serial1.readBytes( commandBuffer , COMMAND_LEN ) == COMMAND_LEN ) {
   
-       // For now, we only care if the first byte is '0' or '1'...
-       switch (commandBuffer[0]) {
-                
-        case '0': 
-         
-        pinMode( LED_PIN, OUTPUT );
-         digitalWrite( LED_PIN , LOW );      // Turn off the LED
-         break;
-         
-         
-        case '1':
-         digitalWrite( LED_PIN , HIGH );      // Turn on the LED
-         break;
-                  
-       }
+      processCommand( commandBuffer );
        
     }
     
