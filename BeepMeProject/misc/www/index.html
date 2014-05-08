@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<head>
-<title>Beep Me</title>
-<meta name='viewport' content='width=device-width'>
-</head>
-<body><center>
+<!DOCTYPE html><title>Beep Me</title><body><center>
 <script>
   function send(s) {
      r=new XMLHttpRequest();
@@ -11,10 +6,8 @@
      r.send(null);
   }
 </script>
-TONE GOES<BR>
-<input type='range' min='50' max='5000' id='freq''><br>
- 
+<H1>TONE GOES</H1>
+<input type='range' id='freq' min='50' max='5000'><br>
 <button onclick='send( "T"+("00000"+document.getElementById("freq").value).slice(-5));'>Play</button>
-<button onclick='send( "N" );'>Stop</button>
-         
+<button onclick='send( "N");'>Stop</button>
 </center></body>
