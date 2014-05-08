@@ -127,9 +127,9 @@ cat >/www/index.html <<'EOM'
      r.send(null);
   }
 </script>
-<H1 style='font-size: 150px;'>LED GOES</H1>
-<button style='font-size: 150px;' onclick='send(1);'>On</button>
-<button style='font-size: 150px;' onclick='send(0);'>Off</button>
+<H1>LED GOES</H1>
+<button onclick='send(1);'>On</button>
+<button onclick='send(0);'>Off</button>
 </center></body>
 EOM
 

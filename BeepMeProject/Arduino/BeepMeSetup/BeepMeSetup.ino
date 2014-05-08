@@ -59,7 +59,7 @@ void setup() {
 
 //   The SSID is the wifi network name that people will see and be able to connect to
 
-   run( F("uci set wireless.@wifi-iface[0].ssid='BlinkMe'"));
+   run( F("uci set wireless.@wifi-iface[0].ssid='BeepMe'"));
 
 
 // ---------------------- setupDnsmasq
@@ -174,7 +174,7 @@ void setup() {
 
    run( F("cat >/www/index.html <<'EOM'" NL
    //-----
-   "<!DOCTYPE html><title>Control Me</title><body><center>" NL
+   "<!DOCTYPE html><title>Beep Me</title><body><center>" NL
    "<script>" NL
    "  function send(s) {" NL
    "     r=new XMLHttpRequest();" NL
@@ -182,10 +182,10 @@ void setup() {
    "     r.send(null);" NL
    "  }" NL
    "</script>" NL
-   "<H1 style='font-size: 150px;'>TONE GOES</H1>" NL
-   "Freqency:<br>" NL
-   "<input type='range' name='freq' min='10' max='20000'><br>" NL
-   "<button style='font-size: 150px;' onclick='send( 'T'+('00000'+document.getElementById('freq').value).slice(-5));'>Play</button>" NL
+   "<H1>TONE GOES</H1>" NL
+   "<input type='range' id='freq' min='50' max='5000'><br>" NL
+   "<button onclick='send( \"T\"+(\"00000\"+document.getElementById(\"freq\").value).slice(-5));'>Play</button>" NL
+   "<button onclick='send( \"N\");'>Stop</button>" NL
    "</center></body>" NL
    //-----
     "EOM" NL));
@@ -229,7 +229,7 @@ void setup() {
 // ==========================================================================================================
 // End of code automatically generated from the shell script BlinkMeSetup.sh
                    
-  Serial.println(F("Setup complete. Now upload the BlinkMe.ino sketch."));
+  Serial.println(F("Setup complete. Now upload the BeepMe.ino sketch."));
 
 }
 
