@@ -174,7 +174,12 @@ void setup() {
 
    run( F("cat >/www/index.html <<'EOM'" NL
    //-----
-   "<!DOCTYPE html><title>Blink Me</title><body><center>" NL
+   "<!DOCTYPE html>" NL
+   "<head>" NL
+   "  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'>" NL
+   "  <title>Blink Me</title>" NL
+   "</head>" NL
+   "<body><center>" NL
    "<script>" NL
    "  function send(s) {" NL
    "     r=new XMLHttpRequest();" NL
